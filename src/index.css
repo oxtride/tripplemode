@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes move-blob-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 50px) scale(1.2); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes move-blob-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, -50px) scale(0.8); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+body {
+  --mouseX: 0px;
+  --mouseY: 0px;
+  background-color: #000;
+  color: #fff;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: var(--mouseX) var(--mouseY);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.2) 0%, rgba(255, 1, 1, 0.1) 50%, rgba(0,0,0,0) 70%);
+    filter: blur(100px);
+    z-index: -1;
+    animation: move-blob-1 10s infinite alternate;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 235, 59, 0.1) 0%, rgba(240, 1, 1, 0.1) 50%, rgba(0,0,0,0) 70%);
+    filter: blur(100px);
+    z-index: -1;
+    animation: move-blob-2 12s infinite alternate;
+}
